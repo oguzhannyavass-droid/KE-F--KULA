@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEŞF-İ KULA | Gezilecek Yerler Rehberi</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-earth: #A0522D;
+            /* Sienna */
+            --color-earth-light: #D2B48C;
+            /* Tan */
+            --color-brick: #B22222;
+            /* Firebrick */
+            --color-black: #121212;
+            --color-text: #F5F5DC;
+            /* Beige */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--color-black);
+            color: var(--color-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background Image with Overlay */
+        .background-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: url("file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/kula_bg_1776853601566.png") no-repeat center center/cover;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.92) 0%, rgba(18, 18, 18, 0.75) 100%);
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(18, 18, 18, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(160, 82, 45, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--color-earth-light);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo span {
+            color: var(--color-brick);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-brick);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-earth-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Guide Container */
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 5% 50px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            flex-grow: 1;
+        }
+
+        .guide-intro {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .guide-intro h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--color-earth-light);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .guide-intro p {
+            font-size: 1.2rem;
+            color: #ddd;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Table of Contents / Quick Nav */
+        .toc-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .toc-nav a {
+            padding: 10px 25px;
+            background: rgba(160, 82, 45, 0.15);
+            border: 1px solid rgba(160, 82, 45, 0.5);
+            color: var(--color-earth-light);
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .toc-nav a:hover {
+            background: var(--color-earth);
+            color: #fff;
+            border-color: var(--color-earth);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(160, 82, 45, 0.4);
+        }
+
+        /* Guide Items (Zigzag Layout) */
+        .guide-item {
+            display: flex;
+            background: rgba(18, 18, 18, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(160, 82, 45, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            scroll-margin-top: 120px;
+            /* Offset for sticky header */
+        }
+
+        .guide-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .guide-image {
+            width: 45%;
+            position: relative;
+        }
+
+        .guide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 400px;
+        }
+
+        .guide-content {
+            width: 55%;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--color-earth-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-content p {
+            font-size: 1.15rem;
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mini Gallery */
+        .mini-gallery {
+            display: flex;
+            gap: 15px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .mini-gallery img,
+        .mini-gallery video {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(160, 82, 45, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mini-gallery img:hover,
+        .mini-gallery video:hover {
+            transform: scale(1.1);
+            border-color: var(--color-earth-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img,
+        .lightbox video {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 10px;
+            border: 2px solid rgba(160, 82, 45, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+
+        .lightbox.active img,
+        .lightbox.active video {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-brick);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(18, 18, 18, 0.7);
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+            user-select: none;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--color-brick);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Map Embed inside guide */
+        .map-wrapper {
+            margin-top: auto;
+            /* Pushes map to the bottom of the card */
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(160, 82, 45, 0.3);
+        }
+
+        .map-wrapper h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-earth-light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(160, 82, 45, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(160, 82, 45, 0.3);
+            margin-top: auto;
+            /* Push to bottom if content is short */
+        }
+
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-earth-light);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .guide-intro h1 {
+                font-size: 2.8rem;
+            }
+
+            .guide-item,
+            .guide-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .guide-image,
+            .guide-content {
+                width: 100%;
+            }
+
+            .guide-image img {
+                height: 350px;
+            }
+
+            .guide-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-wrapper">
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">KEŞF-İ<span>KULA</span></a>
+        <ul class="nav-links">
+            <li><a href="Kulaperest.html">Zanaatler</a></li>
+            <li><a href="GezilecekYerler.html">Gezilecek Yerler</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Guide Content -->
+    <main class="guide-container">
+
+        <div class="guide-intro">
+            <h1>Kula Gezi Rehberi</h1>
+            <p>Kula'nın gizemli doğası, dar tarihi sokakları ve binlerce yıllık mirası boyunca unutulmaz bir yolculuğa
+                çıkın.</p>
+        </div>
+
+        <div class="toc-nav">
+            <a href="#kuladokya">Peri Bacaları</a>
+            <a href="#kula-evleri">Kula Evleri</a>
+            <a href="#jeopark">Volkanik Jeopark</a>
+            <a href="#hoca-seyfettin">Kız Köprüsü</a>
+        </div>
+
+        <!-- Guide Item 1: Kuladokya -->
+        <section id="kuladokya" class="guide-item">
+            <div class="guide-image">
+                <img src="photos/kuladokya/0b506c637ffcf449c89a01429a7a86fb.jpg" alt="Kuladokya Peri Bacaları">
+            </div>
+            <div class="guide-content">
+                <h2>Peri Bacaları (Kuladokya)</h2>
+                <p>Kula Peri Bacaları, halk arasında "Kuladokya" olarak da bilinir. Volkanik küllerin ve tüflerin su ve
+                    rüzgar erozyonu ile aşınması sonucu ortaya çıkan bu doğa harikası oluşumlar, özellikle gün batımında
+                    büründükleri kızıl tonlarla ziyaretçilerini büyüler.</p>
+                <p>Vadi içinde yapacağınız yürüyüşlerde doğanın milyonlarca yıllık sanat eserlerine yakından tanıklık
+                    edebilir, fotoğrafçılık tutkunları için benzersiz kareler yakalayabilirsiniz.</p>
+
+                <div class="mini-gallery">
+                    <img src="photos/kuladokya/0b506c637ffcf449c89a01429a7a86fb.jpg" alt="Kuladokya Detay 1">
+                    <img src="photos/kuladokya/306c0407ed37148040dc3a9493226d81.jpg" alt="Kuladokya Detay 2">
+                    <img src="photos/kuladokya/8854f33afc9d1ae27ee5bab9bdeefdac.jpg" alt="Kuladokya Detay 3">
+                    <video src="photos/kuladokya/Adsız%20tasarım%20(2).mp4" autoplay muted loop></video>
+                </div>
+
+                <div class="map-wrapper">
+                    <h3>Konum</h3>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Kuladokya+Peri+Bacaları&output=embed"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Item 2: Kula Evleri -->
+        <section id="kula-evleri" class="guide-item">
+            <div class="guide-image">
+                <img src="photos/kula evleri/37e48eabdf4282192f1498597866b792.jpg" alt="Tarihi Kula Evleri">
+            </div>
+            <div class="guide-content">
+                <h2>Tarihi Kula Evleri</h2>
+                <p>Geleneksel Osmanlı sivil mimarisinin en güzel örneklerini sunan Tarihi Kula Evleri, dar ve taş döşeli
+                    sokaklar boyunca sıralanır. Ahşap cumbaları, kiremit çatıları ve avlulu yapılarıyla bu evler,
+                    Kula'nın zengin kültürel geçmişini günümüze taşır.</p>
+                <p>Restore edilerek butik otel veya müzeye dönüştürülen bazı Kula evlerinde konaklayabilir veya bu eşsiz
+                    atmosferin tadını çıkararak tarihi sokaklarda nostaljik bir yürüyüş yapabilirsiniz.</p>
+
+                <div class="mini-gallery">
+                    <img src="photos/kula evleri/37e48eabdf4282192f1498597866b792.jpg" alt="Kula Evleri Detay 1">
+                    <img src="photos/kula evleri/59aa7651c45e12309091dd1b14a01566.jpg" alt="Kula Evleri Detay 2">
+                    <img src="photos/kula evleri/929ce17f4dd6a127f8476255daefcff6.jpg" alt="Kula Evleri Detay 3">
+                    <img src="photos/kula evleri/f933cab5ee085181a450d7003369c0dc.jpg" alt="Kula Evleri Detay 4">
+                </div>
+
+                <div class="map-wrapper">
+                    <h3>Konum</h3>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Tarihi+Kula+Evleri&output=embed" allowfullscreen=""
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Item 3: Jeopark -->
+        <section id="jeopark" class="guide-item">
+            <div class="guide-image">
+                <img src="photos/jeopark/17bced2d0b53c39f58e325ee690b5e74.jpg" alt="Kula Volkanik Jeoparkı">
+            </div>
+            <div class="guide-content">
+                <h2>Kula Volkanik Jeoparkı</h2>
+                <p>Türkiye'nin ve Avrupa'nın UNESCO tescilli ender jeoparklarından biri olan Kula Volkanik Jeoparkı,
+                    "Yanık Ülke" (Katakekaumene) olarak adlandırılır. Siyah volkanik kayalar, cüruf konileri ve lav
+                    akıntılarıyla kaplı bu geniş alan, doğanın çarpıcı gücünü gözler önüne serer.</p>
+                <p>Antik çağlardan beri ilgi odağı olan bu bölgede özel yürüyüş rotalarını takip edebilir, sönmüş volkan
+                    kraterlerinin kenarında unutulmaz bir deneyim yaşayabilirsiniz.</p>
+
+                <div class="mini-gallery">
+                    <img src="photos/jeopark/17bced2d0b53c39f58e325ee690b5e74.jpg" alt="Jeopark Detay 1">
+                    <img src="photos/jeopark/468850300_18014317592652175_1069119504277265691_n.jpg"
+                        alt="Jeopark Detay 2">
+                    <img src="photos/jeopark/8d4edde131cb860fc84140a4c50bd3fd.jpg" alt="Jeopark Detay 3">
+                    <video src="photos/jeopark/download.mp4" autoplay muted loop></video>
+                </div>
+
+                <div class="map-wrapper">
+                    <h3>Konum</h3>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Kula+Volkanik+Jeoparkı&output=embed"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Item 4: Kız Köprüsü -->
+        <section id="hoca-seyfettin" class="guide-item">
+            <div class="guide-image">
+                <img src="photos/kız köprüsü/682755913_18075111053652175_1091813786579326791_n.jpg"
+                    alt="Hoca Seyfettin Köprüsü (Kız Köprüsü)">
+            </div>
+            <div class="guide-content">
+                <h2>Hoca Seyfettin Köprüsü (Kız Köprüsü)</h2>
+                <p>Gediz Nehri üzerinde zarif mimarisiyle yükselen Hoca Seyfettin Köprüsü (halk arasındaki adıyla Kız
+                    Köprüsü), Kula'nın tarihi ulaşım ağının en önemli miraslarından biridir. Kesme taşlardan inşa
+                    edilmiş bu zarif kemerli köprü, dönemin mimari ustalığını günümüze yansıtır.</p>
+                <p>Huzur dolu doğa manzarası eşliğinde hem tarihi hissedebileceğiniz hem de eşsiz fotoğraflar
+                    çekebileceğiniz bu köprü, Kula gezinizde mutlaka görmeniz gereken bir duraktır.</p>
+
+                <div class="mini-gallery">
+                    <img src="photos/kız köprüsü/682755913_18075111053652175_1091813786579326791_n.jpg"
+                        alt="Kız Köprüsü Detay 1">
+                    <img src="photos/kız köprüsü/683792011_18075111062652175_7233406041670697212_n.jpg"
+                        alt="Kız Köprüsü Detay 2">
+                    <img src="photos/kız köprüsü/unnamed (1).webp" alt="Kız Köprüsü Detay 3">
+                    <img src="photos/kız köprüsü/unnamed.webp" alt="Kız Köprüsü Detay 4">
+                </div>
+
+                <div class="map-wrapper">
+                    <h3>Konum</h3>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Kız+Köprüsü+Kula&output=embed" allowfullscreen=""
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- İletişim Footer -->
+    <footer id="iletisim">
+        <h3>KEŞF-İ KULA</h3>
+        <p>Kula'nın tarihi, zanaatleri ve eşsiz doğal güzellikleri ile tanışın.</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7;">© 2026 KEŞF-İ KULA. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="image-lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
+        <button class="lightbox-next" id="lightbox-next">&#10095;</button>
+        <img id="lightbox-img" src="" alt="Büyütülmüş Görsel">
+        <video id="lightbox-video" src="" controls autoplay></video>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxVideo = document.getElementById('lightbox-video');
+            const closeBtn = document.getElementById('lightbox-close');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+
+            let currentGallery = [];
+            let currentIndex = 0;
+
+            const updateLightboxContent = () => {
+                const media = currentGallery[currentIndex];
+                if (media.tagName.toLowerCase() === 'img') {
+                    lightboxImg.src = media.src;
+                    lightboxImg.style.display = 'block';
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.src = '';
+                } else if (media.tagName.toLowerCase() === 'video') {
+                    lightboxVideo.src = media.src;
+                    lightboxVideo.style.display = 'block';
+                    lightboxImg.style.display = 'none';
+                    lightboxImg.src = '';
+                }
+            };
+
+            // Setup click events per gallery group
+            document.querySelectorAll('.mini-gallery').forEach(gallery => {
+                const mediaElements = Array.from(gallery.querySelectorAll('img, video'));
+                mediaElements.forEach((media, index) => {
+                    media.addEventListener('click', () => {
+                        currentGallery = mediaElements;
+                        currentIndex = index;
+                        updateLightboxContent();
+                        lightbox.classList.add('active');
+                    });
+                });
+            });
+
+            const showNext = () => {
+                if (currentGallery.length > 0) {
+                    currentIndex = (currentIndex + 1) % currentGallery.length;
+                    updateLightboxContent();
+                }
+            };
+
+            const showPrev = () => {
+                if (currentGallery.length > 0) {
+                    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                    updateLightboxContent();
+                }
+            };
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent closing lightbox
+                showNext();
+            });
+
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showPrev();
+            });
+
+            // Close Lightbox function
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                setTimeout(() => {
+                    lightboxImg.src = '';
+                    lightboxVideo.src = '';
+                    lightboxImg.style.display = 'none';
+                    lightboxVideo.style.display = 'none';
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowRight') {
+                        showNext();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrev();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
