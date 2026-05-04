@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEŞF-İ KULA | Kula'nın Zanaatleri</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-earth: #A0522D;
+            /* Sienna */
+            --color-earth-light: #D2B48C;
+            /* Tan */
+            --color-brick: #B22222;
+            /* Firebrick */
+            --color-black: #121212;
+            --color-text: #F5F5DC;
+            /* Beige */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--color-black);
+            color: var(--color-text);
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        /* Background Image with Overlay */
+        .background-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: url("file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/kula_bg_1776853601566.png") no-repeat center center/cover;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0.6) 100%);
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(18, 18, 18, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(160, 82, 45, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--color-earth-light);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo span {
+            color: var(--color-brick);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-brick);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-earth-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections & Swiper */
+        .fullscreen-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 130px;
+            padding-bottom: 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        footer {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(160, 82, 45, 0.3);
+            margin-top: 20px;
+        }
+
+        footer h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-earth-light);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            z-index: 10;
+        }
+
+        .title-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--color-earth-light);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .title-section p {
+            font-size: 1.2rem;
+            color: #ddd;
+            font-weight: 300;
+        }
+
+        /* Swiper Container */
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 350px;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(178, 34, 34, 0.3);
+            border: 2px solid rgba(160, 82, 45, 0.5);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .swiper-slide-active .slide-content {
+            transform: translateY(0);
+        }
+
+        .slide-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--color-earth-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-content p {
+            font-size: 0.95rem;
+            color: #ccc;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .swiper-slide-active .slide-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--color-earth-light);
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--color-brick);
+            opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--color-black);
+            border: 1px solid rgba(160, 82, 45, 0.5);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(178, 34, 34, 0.4);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--color-brick);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .modal-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--color-earth-light);
+            margin-bottom: 1rem;
+        }
+
+        .modal-body p {
+            font-size: 1.15rem;
+            color: #ddd;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Modal Media Gallery */
+        .modal-media-section {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(160, 82, 45, 0.3);
+            padding-top: 1.5rem;
+        }
+
+        .modal-media-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-earth-light);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .media-item {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid rgba(160, 82, 45, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.02);
+            cursor: pointer;
+        }
+
+        .media-grid video {
+            background: #000;
+        }
+
+        @media (max-width: 768px) {
+            .swiper-slide {
+                width: 280px;
+                height: 380px;
+            }
+
+            .title-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-wrapper">
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">KEŞF-İ<span>KULA</span></a>
+        <ul class="nav-links">
+            <li><a href="Kulaperest.html">Zanaatler</a></li>
+            <li><a href="GezilecekYerler.html">Gezilecek Yerler</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Zanaatler Section -->
+        <section id="zanaatler" class="fullscreen-section">
+            <div class="title-section">
+                <h1>Kadim Zanaatlerin İzinde</h1>
+                <p>Kula'nın ateşle, emekle ve tarihle yoğrulan ustaları.</p>
+            </div>
+
+            <!-- Swiper 3D Slider -->
+            <div class="swiper zanaatler-swiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1: Demircilik -->
+                    <div class="swiper-slide" data-id="demircilik"
+                        style="background-image: url('file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_blacksmith_1776853619852.png')">
+                        <div class="slide-content">
+                            <h2>Demircilik</h2>
+                            <p>Kızgın demire şekil veren, ateşle sanatın buluştuğu kadim meslek.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Fırıncılık -->
+                    <div class="swiper-slide" data-id="firincilik"
+                        style="background-image: url('file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_baking_1776853635802.png')">
+                        <div class="slide-content">
+                            <h2>Fırıncılık</h2>
+                            <p>Odun ateşinde pişen, kokusuyla sokakları saran geleneksel ekmekler.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Halı Dokumacılığı -->
+                    <div class="swiper-slide" data-id="hali-dokumacilik"
+                        style="background-image: url('file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_carpet_1776853652442.png')">
+                        <div class="slide-content">
+                            <h2>Halı Dokumacılığı</h2>
+                            <p>İlmek ilmek işlenen, motiflerinde Kula'nın ruhunu taşıyan şaheserler.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Leblebi İmalatı -->
+                    <div class="swiper-slide" data-id="leblebi"
+                        style="background-image: url('file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_chickpea_1776853667009.png')">
+                        <div class="slide-content">
+                            <h2>Leblebi İmalatı</h2>
+                            <p>Bakır tavalarda kavrulan, nesilden nesile aktarılan Kula lezzeti.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- İletişim Footer -->
+    <footer id="iletisim">
+        <h3>KEŞF-İ KULA</h3>
+        <p>Kula'nın tarihi, zanaatleri ve eşsiz doğal güzellikleri ile tanışın.</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7;">© 2026 KEŞF-İ KULA. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="profession-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Meslek Görseli">
+            <div class="modal-body">
+                <h2 id="modal-title">Başlık</h2>
+                <div id="modal-text">Detaylı açıklama...</div>
+
+                <!-- Galeri ve Video Bölümü -->
+                <div class="modal-media-section" id="modal-media-section" style="display: none;">
+                    <h3>Galeri & Video</h3>
+                    <div class="media-grid" id="modal-media-grid">
+                        <!-- İçerikler JS ile buraya eklenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        const modalData = {
+            'demircilik': {
+                title: 'Demircilik',
+                image: 'file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_blacksmith_1776853619852.png',
+                text: '<p>Kula\'da demircilik, yüzyıllardır süregelen ve babadan oğula aktarılan kadim bir zanaattir. Eski çarşıda çekiç sesleri, sıcak demirin dövülmesiyle yankılanır. Ateşin ve emeğin şekil verdiği demirler, Kula\'nın tarım aletlerinden günlük yaşamdaki eşyalara kadar geniş bir yelpazede hayat bulur.</p><p>Usta ellerde kızgın ateşte tavlanan demir, su verilerek çelikleşir ve uzun ömürlü bir esere dönüşür. Bu meslek sadece bir geçim kaynağı değil, aynı zamanda Kula\'nın kültürel mirasının sarsılmaz bir parçasıdır.</p>',
+                gallery: [
+                    { type: 'video', url: 'videos/demirci.mov' }
+                ]
+            },
+            'firincilik': {
+                title: 'Fırıncılık',
+                image: 'file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_baking_1776853635802.png',
+                text: '<p>Kula fırıncılığı, taş fırınlarda odun ateşinin isli kokusuyla mayalanan bir lezzet geleneğidir. Kula pidesi, ev ekmekleri ve yöresel hamur işleri, asırlık tariflerle bu fırınlarda pişer.</p><p>Özellikle sahur ve iftar sofralarının vazgeçilmezi olan yöresel pide, nohut mayalı ekmekler Kula\'nın sokaklarına o eşsiz kokusunu salar. Fırıncı ustaları, hamurun kıvamını göz kararı, pişme süresini fırının sıcağına göre bir sanatçı edasıyla belirlerler.</p>',
+                gallery: [
+                    { type: 'video', url: 'videos/fırın.mp4' }
+                ]
+            },
+            'hali-dokumacilik': {
+                title: 'Halı Dokumacılığı',
+                image: 'file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_carpet_1776853652442.png',
+                text: '<p>Kula halıları, kök boyası kullanılarak yün ipliklerle dokunan, her bir ilmeğinde ayrı bir hikaye barındıran Anadolu motiflerinin en güzel örneklerindendir. "Kula düğümü" olarak bilinen teknik, bu halıları sağlam ve benzersiz kılar.</p><p>Geometrik desenler, hayat ağacı ve mihrap motifleriyle süslenen Kula halıları, eskiden her genç kızın çeyizinde bulunması gereken en değerli parçaydı. Bugün de geleneksel tezgahların tıkırtıları arasında hayat bulan bu sanat, el emeği ve göz nurunun en somut halidir.</p>',
+                gallery: [
+                    { type: 'video', url: 'videos/dokuma.mp4' }
+                ]
+            },
+            'leblebi': {
+                title: 'Leblebi İmalatı',
+                image: 'file:///C:/Users/skate/.gemini/antigravity/brain/852533a3-e877-42eb-b831-b2e4d7316f66/craft_chickpea_1776853667009.png',
+                text: '<p>Kula leblebisi, nohutun büyük bir özenle işlendiği, aşama aşama lezzetlendiği bir ustalık eseridir. Bakır tavalarda odun ateşinde kavrulan nohut, Kula ustalarının sırrıyla o kıtır ve taze halini alır.</p><p>Tuzlusu, sarısı, çıtırı ve şekerlisiyle birçok çeşidi bulunan leblebi, Kula\'ya gelen misafirlerin vazgeçilmez ikramıdır. Leblebici dükkanlarından sokağa yayılan o kavrulmuş nohut kokusu, Kula çarşısının karakteristik özelliklerinden biridir.</p>',
+                gallery: [
+                    { type: 'video', url: 'videos/leblebi.mp4' }
+                ]
+            }
+        };
+
+        const modal = document.getElementById('profession-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const modalMediaSection = document.getElementById('modal-media-section');
+        const modalMediaGrid = document.getElementById('modal-media-grid');
+
+        function openModal(id) {
+            const data = modalData[id];
+            if (data) {
+                modalImage.src = data.image;
+                modalTitle.textContent = data.title;
+                modalText.innerHTML = data.text;
+
+                // Galeri içeriklerini temizle ve yeniden oluştur
+                modalMediaGrid.innerHTML = '';
+                if (data.gallery && data.gallery.length > 0) {
+                    data.gallery.forEach(item => {
+                        if (item.type === 'image') {
+                            const img = document.createElement('img');
+                            img.src = item.url;
+                            img.className = 'media-item';
+                            img.alt = 'Galeri Görseli';
+                            modalMediaGrid.appendChild(img);
+                        } else if (item.type === 'video') {
+                            const vid = document.createElement('video');
+                            vid.src = item.url;
+                            vid.className = 'media-item';
+                            vid.controls = true;
+                            vid.autoplay = true;
+                            vid.muted = true;
+                            modalMediaGrid.appendChild(vid);
+                        }
+                    });
+                    modalMediaSection.style.display = 'block';
+                } else {
+                    modalMediaSection.style.display = 'none';
+                }
+
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside the content
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        const swiperOptions = {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 30,
+                stretch: 0,
+                depth: 250,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            loop: false,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            on: {
+                click: function (swiper, event) {
+                    if (swiper.clickedSlide) {
+                        const id = swiper.clickedSlide.getAttribute('data-id');
+                        if (id) {
+                            openModal(id);
+                        }
+                    }
+                }
+            }
+        };
+
+        var swiperZanaatler = new Swiper(".zanaatler-swiper", swiperOptions);
+    </script>
+</body>
+
+</html>
