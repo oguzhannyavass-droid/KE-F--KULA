@@ -1,0 +1,7 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary":  "Web uygulamasını mobil uygulamaya dönüştürmek için kullanılabilecek yöntemleri (PWA, Capacitor, React Native) içeren ve kullanıcının seçimini isteyen yeni uygulama planı.",
+  "updatedAt":  "2026-04-20T11:27:51.645489100Z",
+  "version":  "1",
+  "requestFeedback":  true
+}

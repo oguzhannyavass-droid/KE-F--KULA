@@ -1,0 +1,16 @@
+# KulaPerest Geliştirme Görevleri
+
+- [/] Görsellerin Üretilmesi (Yapay Zeka ile)
+  - [ ] Kula Arka Plan Görseli
+  - [ ] Demircilik Zanaati Görseli
+  - [ ] Fırıncılık Zanaati Görseli
+  - [ ] Halı Dokumacılığı Zanaati Görseli
+  - [ ] Leblebi İmalatı Görseli
+- [ ] Ana Sayfa Yapısının (HTML) Kurulması
+  - [ ] Swiper.js Entegrasyonu
+- [ ] Stil ve Temanın (CSS) Uygulanması
+  - [ ] Toprak, Tuğla ve Siyah renk paletinin entegrasyonu
+  - [ ] Glassmorphism (cam efekti) Navbar tasarımı
+  - [ ] 3D Coverflow Slider tasarımı
+- [ ] JavaScript ile Slider'ın Aktifleştirilmesi
+- [ ] Sayfanın masaüstü ve mobil görünüm testleri

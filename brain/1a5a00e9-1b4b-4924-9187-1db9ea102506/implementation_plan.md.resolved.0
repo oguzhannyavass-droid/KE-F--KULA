@@ -1,0 +1,48 @@
+# Yeşil İz Projesi (Green Trace)
+
+Bu doküman, "Yeşil İz" projesini hayata geçirmek için önerilen teknik yaklaşımı, özellikleri ve tasarım planını içermektedir.
+
+## User Review Required
+
+> [!IMPORTANT]
+> Projenin kapsamı ve özellikleri konusunda sizinle aynı vizyonu paylaştığımızdan emin olmak istiyorum. Aşağıda projenin ne olabileceğine dair bir taslak hazırladım. Lütfen bu planı inceleyip onaylayın veya eklemek/değiştirmek istediğiniz noktaları belirtin.
+
+## Open Questions
+
+> [!WARNING]
+> 1. **Projenin Amacı:** "Yeşil İz" projesi ile tam olarak neyi hedefliyoruz? (Örneğin: Kişisel karbon ayak izi takip uygulaması, çevre dostu alışkanlıklar kazandırma platformu, veya bilgilendirici bir portal?)
+> 2. **Özel Özellikler:** Projede kesinlikle olmasını istediğiniz belirli özellikler veya sayfalar var mı?
+> 3. **Tasarım:** Aklınızda belirli bir renk paleti veya tema var mı? (Önerim: Doğayı yansıtan yeşil ve toprak tonları, modern ve dinamik bir arayüz).
+
+## Proposed Features (Önerilen Özellikler)
+
+Bu projenin bir **Karbon Ayak İzi ve Çevre Bilinci Uygulaması** olduğunu varsayarak aşağıdaki temel özellikleri öneriyorum:
+
+1. **Karbon Ayak İzi Hesaplayıcı:** Kullanıcıların ulaşım, enerji tüketimi ve beslenme alışkanlıklarına göre günlük/aylık karbon salınımlarını hesaplayabileceği etkileşimli bir form.
+2. **Kullanıcı Paneli (Dashboard):** Çevresel etkinin zaman içindeki değişimini gösteren şık grafikler ve istatistikler.
+3. **Eko-Görevler & Oyunlaştırma:** "Bugün et tüketme", "İşe bisikletle git", "Tek kullanımlık plastik kullanma" gibi görevler ve başarıldıkça kazanılan sürdürülebilirlik rozetleri.
+4. **Eğitim & İpuçları:** Çevre dostu bir yaşam tarzı için uygulanabilir ipuçları ve bilgiler.
+
+## Proposed Changes
+
+Uygulamayı yüksek performanslı ve çok estetik bir yapıda kurgulayacağız. TailwindCSS kullanılmayacak, özel ve modern bir CSS (Vanilla CSS) tasarımı yapılacaktır.
+
+### Proje Kurulumu
+Yeni proje `C:\Users\skate\.gemini\antigravity\scratch\yesil-iz` dizininde oluşturulacaktır. Bu dizini çalışma alanı (workspace) olarak ayarlamanızı tavsiye edeceğim.
+
+#### [NEW] Frontend Mimarisinin Oluşturulması
+- **Teknoloji:** Vite + React
+- **Komut:** `npx -y create-vite@latest . --template react`
+
+#### [NEW] Temel Sayfalar ve Bileşenler
+- `Home`: Karşılama ve projenin amacını anlatan şık bir ana sayfa (Hero section, animasyonlar).
+- `Calculator`: Etkileşimli hesaplama aracı.
+- `Dashboard`: Sonuçların görüntülendiği ekran.
+- `index.css`: Tüm uygulamanın global stillerini ve "Design System"ını barındıracak modern stil dosyası.
+
+## Verification Plan
+
+### Manual Verification
+- Gerekli geliştirmeler yapıldıktan sonra yerel sunucu (`npm run dev`) başlatılacak.
+- Sayfaların tasarımı, estetiği ve uygulamanın kullanılabilirliği gözden geçirilecek.
+- Sizinle paylaşılarak geri bildirimleriniz doğrultusunda son rötuşlar yapılacak.

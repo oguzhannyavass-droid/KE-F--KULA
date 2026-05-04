@@ -1,0 +1,6 @@
+{
+  "artifactType":  "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary":  "Plan to redesign the Gezilecek Yerler page from a swiper-based card layout to a vertical, scrolling travel guide layout.",
+  "updatedAt":  "2026-04-24T11:04:01.317964400Z",
+  "requestFeedback":  true
+}

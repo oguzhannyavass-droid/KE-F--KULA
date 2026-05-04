@@ -1,0 +1,8 @@
+- `[x]` Redesign `GezilecekYerler.html`
+  - `[x]` Remove Swiper CSS/JS
+  - `[x]` Remove Modal HTML/JS
+  - `[x]` Implement fixed background with frosted glass content wrapper
+  - `[x]` Build Zigzag layout for 4 locations (Peri Bacaları, Kula Evleri, Jeopark, Kız Köprüsü)
+  - `[x]` Embed Google Maps directly in the layout
+  - `[x]` Add a floating sidebar/TOC for quick navigation
+- `[ ]` Create Walkthrough

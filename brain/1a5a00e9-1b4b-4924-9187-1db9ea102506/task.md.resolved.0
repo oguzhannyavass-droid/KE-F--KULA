@@ -1,0 +1,12 @@
+# Yeşil İz Projesi Görev Listesi
+
+- `[/]` Proje dizininin oluşturulması (`yesil-iz`).
+- `[ ]` Vite + React kurulumunun yapılması.
+- `[ ]` Gerekli bağımlılıkların yüklenmesi (React Router DOM vs.).
+- `[ ]` `index.css` dosyasının modern, yeşil tema ve animasyonlarla (Vanilla CSS) oluşturulması.
+- `[ ]` Temel bileşenlerin (Navbar, Footer, Layout) oluşturulması.
+- `[ ]` Ana Sayfa (Home) tasarımı ve geliştirilmesi.
+- `[ ]` Karbon Ayak İzi Hesaplayıcı (Calculator) sayfasının tasarımı ve geliştirilmesi.
+- `[ ]` Kullanıcı Paneli (Dashboard) sayfasının tasarımı ve geliştirilmesi.
+- `[ ]` Eko-Görevler (Eco-Tasks) bileşenlerinin eklenmesi.
+- `[ ]` Son testlerin yapılıp projenin tamamlanması (Walkthrough).
